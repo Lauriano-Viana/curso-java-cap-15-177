@@ -50,17 +50,21 @@ public class Account {
 
     public void deposit(double amount) {
         balance += amount;
-        System.out.println("New Balance: $" + String.format("%.2f",balance));
+        System.out.println("New Balance: $" + String.format("%.2f", balance));
     }
 
-    public void withdraw(double amount) throws DomainException {
+    public void withdraw(double amount)  {
+        validateWithdraw(amount);
+        balance -= amount;
+        System.out.println("New Balance: $" + String.format("%.2f", balance));
+    }
+
+    public void validateWithdraw(double amount)  {
         if (amount > withdrawLimit) {
             throw new DomainException(" The amount exceeds withdraw limit: $" + String.format("%.2f", amount - withdrawLimit));
         }
         if (amount > balance) {
             throw new DomainException(" Not enough balance: ");
         }
-        balance -= amount;
-        System.out.println("New Balance: $" + String.format("%.2f",balance));
     }
 }
