@@ -50,6 +50,7 @@ public class Account {
 
     public void deposit(double amount) {
         balance += amount;
+        System.out.println("New Balance: $" + String.format("%.2f",balance));
     }
 
     public void withdraw(double amount) throws DomainException {
